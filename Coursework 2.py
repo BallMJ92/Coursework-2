@@ -7,7 +7,7 @@ class Coursework2:
         A = []
         B = []
 
-        # user input to define number of elements in list and what those elements are
+        # User input to define number of elements in list and what those elements are
         listLength = int(input("Enter number of elements in list A: "))
         while listLength > 0:
             addElement = str(input("Enter element %d: " % (listLength)))
@@ -20,15 +20,10 @@ class Coursework2:
             B.append(addElement)
             listLength -= 1
 
-        setLike = 0
+
 
         # Testing if elements in list B appear in A, in any order
-        for x in range(0, len(A)):
-            for y in range(0, len(B)):
-                if B[y] == A[x]:
-                    setLike = 1
-
-        if setLike == 1:
+        if set(B) < set(A):
             print("\nYes")
             print("List is a set-like containment\n")
         else:
