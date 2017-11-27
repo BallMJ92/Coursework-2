@@ -20,8 +20,6 @@ class Coursework2:
             B.append(addElement)
             listLength -= 1
 
-
-
         # Testing if elements in list B appear in A, in any order
         if set(B) < set(A):
             print("\nYes")
