@@ -91,6 +91,7 @@ class Coursework2:
 
     def composingReports(self):
         print("Exercise 2 - Composing module and student reports")
+        
         # defining the variables to be placed inside the functions
         arguments = [[5, 2, 3, 8],
                      [5, -5, 6, 33],
@@ -132,6 +133,7 @@ class Coursework2:
         for i in averageColumn:
             print("The average of column %d is %f" % (counter + 1, i))
             counter += 1
+            
     def students(self):
         """Function holding the 3 lists (student names, module names
         and marks) for the other functions to call upon"""
@@ -220,6 +222,7 @@ class Coursework2:
         self.consecutiveSequence()
         self.composingReports()
         self.students()
+        
 
 if __name__ == "__main__":
     Coursework = Coursework2()
