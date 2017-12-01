@@ -90,23 +90,29 @@ class Coursework2:
             print("List is not a consecutive sequence-like containment\n")
 
     def composingReports(self):
-        print("Exercise 2 - Composing module and student reports")
+        print("Exercise 2 - Composing module and student reports\n")
         
         # defining the variables to be placed inside the functions
-        arguments = [[5, 2, 3, 8],
-                     [5, -5, 6, 33],
-                     [7, 8, -9, 5]]
+        table = [[5, 2, 3, 8],
+                [5, -5, 6, 33],
+                [7, 8, -9, 5]]
 
-        """Iterating over arguments list of lists and changing values less than 0
+        print("Table:\n")
+
+        # Printing out list of lists in tabular format 
+        for x in range(len(table)):
+            print(str(table[x::3]).replace('[', '').replace(']', ''))
+
+        """Iterating over table list of lists and changing values less than 0
         to 0, in order to preserve equal length in column and row"""
-        for x in arguments:
+        for x in table:
             for y in range(len(x)):
                 if x[y] < 0:
                     x[y] = 0
 
-        # Seperate functions which take the list of lists variable called 'arguments'
-        self.avTableRow(arguments)
-        self.avTableColumn(arguments)
+        # Seperate functions which take the list of lists variable called 'table'
+        self.avTableRow(table)
+        self.avTableColumn(table)
 
     def avTableRow(self, A):
         print("-----------------")
@@ -193,7 +199,7 @@ class Coursework2:
         if moduleName.lower() in modName:
             print('Module name: %s. Average for the registered modules: %f' % (moduleName, averageColumn[index]))
         else:
-            print('There is no such student')
+            print('There is no such Module')
 
     def studentReport(self, sList, sMarks):
         print("-----------------")
@@ -217,9 +223,9 @@ class Coursework2:
             print('Module name: %s. Average for the registered modules: %f' % (modules[i], averageColumn[i]))
 
     def main(self):
-        self.setLike()
-        self.sequenceLike()
-        self.consecutiveSequence()
+        #self.setLike()
+        #self.sequenceLike()
+        #self.consecutiveSequence()
         self.composingReports()
         self.students()
         
