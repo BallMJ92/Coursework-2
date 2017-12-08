@@ -93,47 +93,67 @@ class Coursework2:
         print("Exercise 2 - Composing module and student reports\n")
         
         # defining the variables to be placed inside the functions
-        table = [[5, 2, 3, 8],
-                [5, -5, 6, 33],
-                [7, 8, -9, 5]]
-
-        print("Table:\n")
-
+        print("Original Table including negative entries:\n")
+        table = [[5, -2, 3, 8],
+                [5, 5, -6, 33],
+                [7, 8, 9, 5, 9, 11]]
+        
         # Printing out list of lists in tabular format 
         for x in range(len(table)):
             print(str(table[x::3]).replace('[', '').replace(']', ''))
 
         """Iterating over table list of lists and changing values less than 0
-        to 0, in order to preserve equal length in column and row"""
-        for x in table:
-            for y in range(len(x)):
-                if x[y] < 0:
-                    x[y] = 0
-
+        to 0, in order to preserve equal length in column and row, and also to
+        ignore negative entries"""
+        
         # Seperate functions which take the list of lists variable called 'table'
         self.avTableRow(table)
         self.avTableColumn(table)
 
-    def avTableRow(self, A):
+    def avTableRow(self, table):
         print("-----------------")
-        print("2.1 Average of a table row \n")
+        print("2.1 Average of a table row excluding negative entries\n")
 
+        A = table
+        
         counter = 0
 
-        # Utilising list comprehension to average elements in each row
-        averageRow = [float(sum(row)) / len(row) for row in A]
+        for x in A:
+            for y in x:
+                if y < 0:
+                    x.remove(y)
 
-        # Printing each averaged element and using a counter I define which row the element corresponds to
-        for i in averageRow:
+        listElems = [i for s in A for i in s if i>=1]
+        rowLen = [len(x) for x in A]
+        rowSum = [sum(b) for b in A]
+        
+        #print(listElems)
+        #print(rowSum)
+        #print(rowLen)
+
+        sums = [x/y for x,y in zip(rowSum, rowLen)]
+        for i in sums:
             print("The average of row %d is %f" % (counter + 1, i))
-            counter += 1
+            counter += 1            
 
-    def avTableColumn(self, A):
+    def avTableColumn(self, table):
         print("-----------------")
-        print("2.2 Average of a table column \n")
+        print("2.2 Average of a table column excluding negative entries\n")
 
+        A = table
+
+        print(A)
+        
+        for x in A:
+            for y in range(len(x)):
+                if x[y] < 0:
+                    x[y] = 0
+
+        for x in range(len(A)):
+            print(str(A[x::3]).replace('[', '').replace(']', ''))
+        
         counter = 0
-
+        #print([len(col) for col in zip(*A)])
         averageColumn = [float(sum(col)) / len(col) for col in zip(*A)]
 
         for i in averageColumn:
@@ -147,7 +167,7 @@ class Coursework2:
         listOfStudents = ['John Smith', 'Tom Brown', 'Jason Bourne']
         modules = ['Physics', 'Mathematics', 'English', 'History']
         listofStudentMarks = [[79, 86, 89, 81],
-                              [65, 95, 64, 33],
+                              [95, 95, 94, 93],
                               [71, 89, 97, 55]]
 
         self.avStudentMark(listOfStudents, listofStudentMarks)
