@@ -88,6 +88,7 @@ class Coursework2:
             print("List is not a consecutive sequence-like containment\n")
 
     def composingReports(self):
+        print("-----------------")
         print("Exercise 2 - Composing module and student reports\n")
 
         # defining the variables to be placed inside the functions
@@ -114,7 +115,8 @@ class Coursework2:
     def avTableRow(self, listOfListsRows):
         print("-----------------")
         print("2.1 Average of a table row excluding negative entries\n")
-
+        
+        #Initialising list called averages to hold the average values of each row
         averages = []
 
         """Iterating over table list of lists and changing values less than 0
@@ -163,7 +165,7 @@ class Coursework2:
                     listColumns[x].remove(n)
 
         averageRow = [float(sum(row)) / len(row) for row in listColumns]
-        
+
         counter = 0
         for i in averageRow:
             print("The average of column %d is %f" % (counter + 1, i))
@@ -197,7 +199,7 @@ class Coursework2:
         index = 0
 
         # Getting index of student name from user input
-        for i in range(len(studentList)):
+        for i in range(0, len(studentList)):
             if studentName == studentList[i]:
                 index = i
 
@@ -222,7 +224,7 @@ class Coursework2:
         index = 0
 
         # Getting index of module name from user input
-        for i in range(len(modName)):
+        for i in range(0, len(modName)):
             if moduleName == modName[i]:
                 index = i
 
@@ -239,7 +241,7 @@ class Coursework2:
         # zipping lists and reverse sorting based on the student marks to get it in descending order
         averageStudentMarks, sList = zip(*sorted(zip(averageStudentMarks, sList), reverse=True))
 
-        for i in range(len(sList)):
+        for i in range(0, len(sList)):
             print('Student name: %s. Average for the registered modules: %f' % (sList[i], averageStudentMarks[i]))
 
     def modulesReport(self, modules, sMarks):
@@ -249,17 +251,19 @@ class Coursework2:
         averageColumn = [float(sum(col)) / len(col) for col in zip(*sMarks)]
         averageColumn, modules = zip(*sorted(zip(averageColumn, modules), reverse=True))
 
-        for i in range(len(modules)):
+        for i in range(0, len(modules)):
             print('Module name: %s. Average for the registered modules: %f' % (modules[i], averageColumn[i]))
 
     def main(self):
-        # self.setLike()
-        # self.sequenceLike()
-        # self.consecutiveSequence()
+        self.setLike()
+        self.sequenceLike()
+        self.consecutiveSequence()
         self.composingReports()
-        # self.students()
+        self.students()
 
 
 if __name__ == "__main__":
     Coursework = Coursework2()
     Coursework.main()
+
+
