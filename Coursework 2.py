@@ -93,6 +93,8 @@ class Coursework2:
 
         # defining the variables to be placed inside the functions
         print("Original Table including negative entries:\n")
+        
+        #Creating an uneven list of lists called table
         table = [[5, -2, 3, 8, 9],
                  [5, 5, -6, 33],
                  [7, 8, 9, 5],
@@ -108,7 +110,7 @@ class Coursework2:
         listOfListsRows = [x[:] for x in table]
         listOfListsCols = [y[:] for y in table]
 
-        #Seperate functions which take the list of lists variable called 'table'
+        #Seperate functions which take the new instances of table list of lists as input
         self.avTableRow(listOfListsRows)
         self.avTableColumn(listOfListsCols)
 
