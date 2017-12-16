@@ -1,5 +1,4 @@
 class Coursework2:
-
     def setLike(self):
         print("Exercise 1 - Containment relations of lists")
         print("1.1 Set-like containment\n")
@@ -47,7 +46,6 @@ class Coursework2:
             B.append(addElement)
             listLength -= 1
 
-
         x, y = 0, 0
         while x < len(A) and y < len(B):
             # Testing if the corresponding indexes of elements within list A and B are the same
@@ -91,75 +89,86 @@ class Coursework2:
 
     def composingReports(self):
         print("Exercise 2 - Composing module and student reports\n")
-        
+
         # defining the variables to be placed inside the functions
         print("Original Table including negative entries:\n")
-        table = [[5, -2, 3, 8],
-                [5, 5, -6, 33],
-                [7, 8, 9, 5, 9, 11]]
-        
-        # Printing out list of lists in tabular format 
+        table = [[5, -2, 3, 8, 9],
+                 [5, 5, -6, 33],
+                 [7, 8, 9, 5],
+                 [8, 99, 5, -1, 8, 10],
+                 [0, 55, 9, 1],
+                 [5]]
+
+        # Printing out list of lists in tabular format
         for x in range(len(table)):
-            print(str(table[x::3]).replace('[', '').replace(']', ''))
+            print(str(table[x::len(table)]).replace('[', '').replace(']', ''))
 
-        """Iterating over table list of lists and changing values less than 0
-        to 0, in order to preserve equal length in column and row, and also to
-        ignore negative entries"""
-        
-        # Seperate functions which take the list of lists variable called 'table'
-        self.avTableRow(table)
-        self.avTableColumn(table)
+        #Initiating new instances of table list of lists
+        listOfListsRows = [x[:] for x in table]
+        listOfListsCols = [y[:] for y in table]
 
-    def avTableRow(self, table):
+        #Seperate functions which take the list of lists variable called 'table'
+        self.avTableRow(listOfListsRows)
+        self.avTableColumn(listOfListsCols)
+
+    def avTableRow(self, listOfListsRows):
         print("-----------------")
         print("2.1 Average of a table row excluding negative entries\n")
 
-        A = table
-        
-        counter = 0
+        averages = []
 
-        for x in A:
+        """Iterating over table list of lists and changing values less than 0
+                to 0, in order to preserve equal length in column and row, and also to
+                ignore negative entries"""
+        for x in range(len(listOfListsRows)):
+            for n in listOfListsRows[x]:
+                if n <= 0:
+                    listOfListsRows[x].remove(n)
+
+        for x in listOfListsRows:
+            elemSum = 0
+            counter = 0
             for y in x:
-                if y < 0:
-                    x.remove(y)
+                elemSum += y
+                counter = counter + 1
+            averages.append(elemSum / counter)
 
-        listElems = [i for s in A for i in s if i>=1]
-        rowLen = [len(x) for x in A]
-        rowSum = [sum(b) for b in A]
-        
-        #print(listElems)
-        #print(rowSum)
-        #print(rowLen)
+        count = 0
+        for i in averages:
+            print("The average of row %d is %f" % (count + 1, i))
+            count += 1
 
-        sums = [x/y for x,y in zip(rowSum, rowLen)]
-        for i in sums:
-            print("The average of row %d is %f" % (counter + 1, i))
-            counter += 1            
-
-    def avTableColumn(self, table):
+    def avTableColumn(self, listOfListsCols):
         print("-----------------")
         print("2.2 Average of a table column excluding negative entries\n")
+        #initiating new list to contain the columns of list A
+        listColumns = []
 
-        A = table
+        #Getting the length of the longest column and row
+        maxCol = len(listOfListsCols[0])
+        for row in listOfListsCols:
+            rowLength = len(row)
+            if rowLength > maxCol:
+                maxCol = rowLength
 
-        print(A)
-        
-        for x in A:
-            for y in range(len(x)):
-                if x[y] < 0:
-                    x[y] = 0
+        for colIndex in range(maxCol):
+            listColumns.append([])
+            for row in listOfListsCols:
+                if colIndex < len(row):
+                    listColumns[colIndex].append(row[colIndex])
 
-        for x in range(len(A)):
-            print(str(A[x::3]).replace('[', '').replace(']', ''))
+        for x in range(len(listColumns)):
+            for n in listColumns[x]:
+                if n <= 0:
+                    listColumns[x].remove(n)
+
+        averageRow = [float(sum(row)) / len(row) for row in listColumns]
         
         counter = 0
-        #print([len(col) for col in zip(*A)])
-        averageColumn = [float(sum(col)) / len(col) for col in zip(*A)]
-
-        for i in averageColumn:
+        for i in averageRow:
             print("The average of column %d is %f" % (counter + 1, i))
             counter += 1
-            
+
     def students(self):
         """Function holding the 3 lists (student names, module names
         and marks) for the other functions to call upon"""
@@ -194,7 +203,8 @@ class Coursework2:
 
         # Printing student name along with corresponding average mark
         if studentName.lower() in studentList:
-            print('Student name: %s. Average for the registered modules: %f' % (studentName, averageStudentMarks[index]))
+            print(
+                'Student name: %s. Average for the registered modules: %f' % (studentName, averageStudentMarks[index]))
         else:
             print('There is no such student')
 
@@ -227,7 +237,7 @@ class Coursework2:
 
         averageStudentMarks = [float(sum(row)) / len(row) for row in sMarks]
         # zipping lists and reverse sorting based on the student marks to get it in descending order
-        averageStudentMarks, sList = zip(*sorted(zip(averageStudentMarks, sList),reverse=True))
+        averageStudentMarks, sList = zip(*sorted(zip(averageStudentMarks, sList), reverse=True))
 
         for i in range(len(sList)):
             print('Student name: %s. Average for the registered modules: %f' % (sList[i], averageStudentMarks[i]))
@@ -243,12 +253,12 @@ class Coursework2:
             print('Module name: %s. Average for the registered modules: %f' % (modules[i], averageColumn[i]))
 
     def main(self):
-        #self.setLike()
-        #self.sequenceLike()
-        #self.consecutiveSequence()
+        # self.setLike()
+        # self.sequenceLike()
+        # self.consecutiveSequence()
         self.composingReports()
-        self.students()
-        
+        # self.students()
+
 
 if __name__ == "__main__":
     Coursework = Coursework2()
