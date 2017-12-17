@@ -93,8 +93,6 @@ class Coursework2:
 
         # defining the variables to be placed inside the functions
         print("Original Table including negative entries:\n")
-        
-        #Creating an uneven list of lists called table
         table = [[5, -2, 3, 8, 9],
                  [5, 5, -6, 33],
                  [7, 8, 9, 5],
@@ -110,14 +108,17 @@ class Coursework2:
         listOfListsRows = [x[:] for x in table]
         listOfListsCols = [y[:] for y in table]
 
-        #Seperate functions which take the new instances of table list of lists as input
-        self.avTableRow(listOfListsRows)
-        self.avTableColumn(listOfListsCols)
+        #Seperate functions which take the list of lists variable called 'table'
+        row = int(input("Enter row number starting at '0' to get average: "))
+        self.avTableRow(listOfListsRows, row)
 
-    def avTableRow(self, listOfListsRows):
+        column = int(input("\nEnter column number starting at '0' to get average: "))
+        self.avTableColumn(listOfListsCols, column)
+
+    def avTableRow(self, listOfListsRows, i):
         print("-----------------")
         print("2.1 Average of a table row excluding negative entries\n")
-        
+
         #Initialising list called averages to hold the average values of each row
         averages = []
 
@@ -137,12 +138,14 @@ class Coursework2:
                 counter = counter + 1
             averages.append(elemSum / counter)
 
-        count = 0
+        """count = 0
         for i in averages:
             print("The average of row %d is %f" % (count + 1, i))
-            count += 1
+            count += 1"""
 
-    def avTableColumn(self, listOfListsCols):
+        print("Average of row %d is: %f" % (i, averages[i]))
+
+    def avTableColumn(self, listOfListsCols, i):
         print("-----------------")
         print("2.2 Average of a table column excluding negative entries\n")
         #initiating new list to contain the columns of list A
@@ -168,10 +171,14 @@ class Coursework2:
 
         averageRow = [float(sum(row)) / len(row) for row in listColumns]
 
-        counter = 0
-        for i in averageRow:
-            print("The average of column %d is %f" % (counter + 1, i))
-            counter += 1
+        """counter = 0
+        for x in averageRow:
+            print("The average of column %d is %f" % (counter + 1, x))
+            counter += 1"""
+
+        print("Average of column %d is: %f" % (i, averageRow[i]))
+
+
 
     def students(self):
         """Function holding the 3 lists (student names, module names
