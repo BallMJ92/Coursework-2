@@ -91,7 +91,7 @@ class Coursework2:
         print("-----------------")
         print("Exercise 2 - Composing module and student reports\n")
 
-        # defining the variables to be placed inside the functions
+        # Defining the variables to be placed inside the functions
         print("Original Table including negative entries:\n")
         table = [[5, -2, 3, 8, 9],
                  [5, 5, -6, 33],
@@ -104,12 +104,12 @@ class Coursework2:
         for x in range(len(table)):
             print(str(table[x::len(table)]).replace('[', '').replace(']', ''))
 
-        #Initiating new instances of table list of lists
+        # Initiating new instances of table list of lists
         listOfListsRows = [x[:] for x in table]
         listOfListsCols = [y[:] for y in table]
 
-        #Seperate functions which take the list of lists variable called 'table'
-        row = int(input("Enter row number starting at '0' to get average: "))
+        # Seperate functions which take the list of lists variable called 'table'
+        row = int(input("\nEnter row number starting at '0' to get average: "))
         self.avTableRow(listOfListsRows, row)
 
         column = int(input("\nEnter column number starting at '0' to get average: "))
@@ -119,7 +119,7 @@ class Coursework2:
         print("-----------------")
         print("2.1 Average of a table row excluding negative entries\n")
 
-        #Initialising list called averages to hold the average values of each row
+        # Initialising list called averages to hold the average values of each row
         averages = []
 
         """Iterating over table list of lists and changing values less than 0
@@ -138,6 +138,7 @@ class Coursework2:
                 counter = counter + 1
             averages.append(elemSum / counter)
 
+        # Code to print out entire averages of all rows
         """count = 0
         for i in averages:
             print("The average of row %d is %f" % (count + 1, i))
@@ -148,10 +149,11 @@ class Coursework2:
     def avTableColumn(self, listOfListsCols, i):
         print("-----------------")
         print("2.2 Average of a table column excluding negative entries\n")
-        #initiating new list to contain the columns of list A
+        
+        # Initiating new list to contain the columns of list A
         listColumns = []
 
-        #Getting the length of the longest column and row
+        # Getting the length of the longest column and row
         maxCol = len(listOfListsCols[0])
         for row in listOfListsCols:
             rowLength = len(row)
@@ -171,6 +173,7 @@ class Coursework2:
 
         averageRow = [float(sum(row)) / len(row) for row in listColumns]
 
+        # Code to print out entire averages of all columns
         """counter = 0
         for x in averageRow:
             print("The average of column %d is %f" % (counter + 1, x))
@@ -178,12 +181,11 @@ class Coursework2:
 
         print("Average of column %d is: %f" % (i, averageRow[i]))
 
-
-
     def students(self):
+        
         """Function holding the 3 lists (student names, module names
         and marks) for the other functions to call upon"""
-
+        
         listOfStudents = ['John Smith', 'Tom Brown', 'Jason Bourne']
         modules = ['Physics', 'Mathematics', 'English', 'History']
         listofStudentMarks = [[79, 86, 89, 81],
@@ -202,8 +204,10 @@ class Coursework2:
         # Using list comprehension to get average mark of each row
         averageStudentMarks = [float(sum(row)) / len(row) for row in sMarks]
         studentName = input(str("Please enter your full name: "))
+        
         # Using list comprehension to turn all strings in list to lowercase
         studentList = [x.lower() for x in sList]
+        
         # Initialising index variable to hold index of student names in list
         index = 0
 
@@ -226,6 +230,7 @@ class Coursework2:
         # Using list comprehension to get average mark of each column
         averageColumn = [float(sum(col)) / len(col) for col in zip(*sMarks)]
         moduleName = input(str("Please enter module name: "))
+        
         # Using list comprehension to turn all strings in list to lowercase
         modName = [x.lower() for x in modules]
 
@@ -246,7 +251,9 @@ class Coursework2:
         print("-----------------")
         print("2.5 Average mark for a module \n")
 
+        # Using list comprehension to get average mark
         averageStudentMarks = [float(sum(row)) / len(row) for row in sMarks]
+        
         # zipping lists and reverse sorting based on the student marks to get it in descending order
         averageStudentMarks, sList = zip(*sorted(zip(averageStudentMarks, sList), reverse=True))
 
