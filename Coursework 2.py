@@ -171,15 +171,15 @@ class Coursework2:
                 if n <= 0:
                     listColumns[x].remove(n)
 
-        averageRow = [float(sum(row)) / len(row) for row in listColumns]
+        averageColumn = [float(sum(row)) / len(row) for row in listColumns]
 
         # Code to print out entire averages of all columns
         """counter = 0
-        for x in averageRow:
+        for x in averageColumn:
             print("The average of column %d is %f" % (counter + 1, x))
             counter += 1"""
 
-        print("Average of column %d is: %f" % (i, averageRow[i]))
+        print("Average of column %d is: %f" % (i, averageColumn[i]))
 
     def students(self):
         
